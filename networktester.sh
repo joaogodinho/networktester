@@ -19,7 +19,7 @@ req=$(expr 60 / ${interval} \* 60 \* 24)
 
 runTrace() {
 	tstamp=$(date +$dateFormat)
-	ttl=$(tcptraceroute -f 255 -m 255 -q 1 $1 $2 2>/dev/null | sed 's/.*]\s\+//g')
+	ttl=$(tcptraceroute -f 255 -m 255 -q 1 $1 $2 2>/dev/null | grep -o '[0-9]\+\.[0-9]\+\s\+ms')
 	echo "$seq $tstamp $ttl"
 }
 
